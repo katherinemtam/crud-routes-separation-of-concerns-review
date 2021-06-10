@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "NODE_OPTIONS=--experimental-vm-modules jest --verbose --runInBand --testLocationInResults --setupFiles dotenv/config",
+    "test": "node --experimental-vm-modules ./node_modules/jest/bin/jest.js --verbose --runInBand --testLocationInResults --setupFiles dotenv/config",
     "test:watch": "npm run test -- --watch",
     "start": "node index.js",
     "start:watch": "nodemon index.js"
@@ -28,6 +28,7 @@
   "dependencies": {
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
-    "pg": "^8.6.0"
+    "pg": "^8.6.0",
+    "supertest": "^6.1.3"
   }
 }
