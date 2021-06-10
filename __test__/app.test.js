@@ -23,6 +23,12 @@ describe('dog routes', () => {
         weight: '20 lbs'
       });
 
+    expect(res.body).toEqual({
+      id: '1',
+      name: 'spot',
+      age: 5,
+      weight: '20 lbs'
+    });
     
   });
 
