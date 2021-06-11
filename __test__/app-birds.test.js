@@ -45,4 +45,20 @@ describe('bird routes', () => {
 
     expect(res.body).toEqual([kiwi, ostrich, penguin]);
   });
+
+  test('get a bird via GET', async () => {
+    const bird = await Bird.insert({
+      type: 'flamingo',
+      origin: 'south america'
+    });
+
+    const res = await request(app)
+      .get(`/api/v1/birds/${bird.id}`);
+
+    expect(res.body).toEqual({
+      id: '1',
+      type: 'flamingo',
+      origin: 'south america'
+    });
+  });
 });
