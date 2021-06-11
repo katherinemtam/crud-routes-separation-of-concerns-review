@@ -1,10 +1,12 @@
+import dotenv from 'dotenv';
+dotenv.config();
 import { promises as fs } from 'fs';
 import path from 'path';
 
 export default (pool) => {
   return fs
     .readFile(
-      `${path.dirname(new URL(import.meta.url).pathname)}/../sql/setup.sql`,
+      'C:/Users/Kat/alchemy/career-track/lab-04-review/sql/setup.sql',
       {
         encoding: 'utf-8',
       }
