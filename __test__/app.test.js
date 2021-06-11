@@ -86,10 +86,19 @@ describe('dog routes', () => {
 
     expect(res.body).toEqual(dog);
   });
+  
+  test('delete a dog via DELETE', async () => {
+    const dog = await Dog.insert({
+      name: 'laddy',
+      age: 7,
+      weight: '40 lbs'
+    });
+    
+    const res = await request(app)
+      .delete(`/api/v1/dogs/${dog.id}`)
+      .send(dog);
 
-
-
-
-
+    expect(res.body).toEqual(dog);
+  });
 
 });
