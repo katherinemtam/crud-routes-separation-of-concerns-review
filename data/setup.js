@@ -1,9 +1,9 @@
-import dotenv from 'dotenv';
+const dotenv = require('dotenv');
 dotenv.config();
-import { promises as fs } from 'fs';
-import path from 'path';
+const fs = require('fs').promises;
+// const path = require('path');
 
-export default (pool) => {
+module.exports = (pool) => {
   return fs
     .readFile(
       'C:/Users/Kat/alchemy/career-track/lab-04-review/sql/setup.sql',

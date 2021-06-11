@@ -2,13 +2,12 @@
   "name": "review",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
-  "type": "module",
+  "main": "server.js",
   "scripts": {
     "test": "node --experimental-vm-modules ./node_modules/jest/bin/jest.js --verbose --runInBand --testLocationInResults --setupFiles dotenv/config",
     "test:watch": "npm run test -- --watch",
-    "start": "node index.js",
-    "start:watch": "nodemon index.js"
+    "start": "node server.js",
+    "start:watch": "nodemon server.js"
   },
   "jest": {
     "testEnvironment": "node"
