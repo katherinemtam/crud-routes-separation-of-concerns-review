@@ -3,7 +3,6 @@ const setup = require('../data/setup.js');
 const request = require('supertest');
 const app = require('../lib/app.js');
 const Bird = require('../lib/models/Bird.js');
-const { response } = require('../lib/app.js');
 
 describe('bird routes', () => {
   beforeEach(() => {
@@ -73,6 +72,19 @@ describe('bird routes', () => {
       .put(`/api/v1/birds/${bird.id}`)
       .send(bird);
     
+    expect(res.body).toEqual(bird);
+  });
+
+  test('delete a bird via DELETE', async () => {
+    const bird = await Bird.insert({
+      type: 'peacock',
+      origin: 'asia'
+    });
+
+    const res = await request(app)
+      .delete(`/api/v1/birds/${bird.id}`)
+      .send(bird);
+
     expect(res.body).toEqual(bird);
   });
 });
