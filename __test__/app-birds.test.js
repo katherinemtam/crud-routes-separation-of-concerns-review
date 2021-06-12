@@ -3,6 +3,7 @@ const setup = require('../data/setup.js');
 const request = require('supertest');
 const app = require('../lib/app.js');
 const Bird = require('../lib/models/Bird.js');
+const { response } = require('../lib/app.js');
 
 describe('bird routes', () => {
   beforeEach(() => {
@@ -60,5 +61,18 @@ describe('bird routes', () => {
       type: 'flamingo',
       origin: 'south america'
     });
+  });
+
+  test('update a bird via PUT', async () => {
+    const bird = await Bird.insert({
+      type: 'penguin',
+      origin: 'antarctica'
+    });
+
+    const res = await request(app)
+      .put(`/api/v1/birds/${bird.id}`)
+      .send(bird);
+    
+    expect(res.body).toEqual(bird);
   });
 });
