@@ -9,7 +9,7 @@ describe('ta routes', () => {
     return setup(pool);
   });
 
-  test.only('create a ta via POST', async () => {
+  test('create a ta via POST', async () => {
     const ta = {
       firstName: 'jena',
       lastName: 'boehm'
@@ -24,5 +24,26 @@ describe('ta routes', () => {
       firstName: 'jena',
       lastName: 'boehm'
     });
+  });
+
+  test('finds all tas via GET', async () => {
+    const bryana = await Ta.insert({
+      firstName: 'bryana',
+      lastName: 'kitchen'
+    });
+    const sarah = await Ta.insert({
+      firstName: 'sarah',
+      lastName: 'skillen'
+    });
+    const perry = await Ta.insert({
+      firstName: 'perry',
+      lastName: 'sittser'
+    });
+    
+    const res = await request(app)
+      .get('/api/v1/tas');
+
+
+    expect(res.body).toEqual([bryana, sarah, perry]);
   });
 });
