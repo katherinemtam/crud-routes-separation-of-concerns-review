@@ -73,4 +73,17 @@ describe('ta routes', () => {
 
     expect(res.body).toEqual(ta);
   });
+
+  test('delete a ta via DELETE', async () => {
+    const ta = await Ta.insert({
+      firstName: 'jake',
+      lastName: 'pendergraft'
+    });
+
+    const res = await request(app)
+      .delete(`/api/v1/tas/${ta.id}`)
+      .send(ta);
+
+    expect(res.body).toEqual(ta);
+  });
 });
