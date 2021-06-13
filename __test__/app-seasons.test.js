@@ -58,4 +58,18 @@ describe('season routes', () => {
 
     expect(res.body).toEqual([winter, spring, summer, fall]);
   });
+
+  test('get a season via GET', async () => {
+
+    const season = await Season.insert({
+      season: 'spring',
+      startMonth: 'march',
+      endMonth: 'may'
+    });
+
+    const res = await request(app)
+      .get(`/api/v1/seasons/${season.id}`);
+
+    expect(res.body).toEqual(season);
+  });
 });
