@@ -46,4 +46,17 @@ describe('ta routes', () => {
 
     expect(res.body).toEqual([bryana, sarah, perry]);
   });
+
+  test('finds a ta via GET', async () => {
+    const ta = await Ta.insert({
+      firstName: 'new',
+      lastName: 'alchemist'
+    });
+
+    const res = await request(app)
+      .get(`/api/v1/tas/${ta.id}`);
+
+    expect(res.body).toEqual(ta);
+
+  });
 });
