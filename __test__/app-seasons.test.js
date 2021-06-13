@@ -2,6 +2,7 @@ const pool = require('../lib/utils/pool.js');
 const setup = require('../data/setup.js');
 const request = require('supertest');
 const app = require('../lib/app.js');
+const Season = require('../lib/models/Season.js');
 
 describe('season routes', () => {
   beforeEach(() => {
@@ -27,4 +28,34 @@ describe('season routes', () => {
     });
   });
 
+  test('get all seasons via GET', async () => {
+    const winter = await Season.insert({
+      season: 'winter',
+      startMonth: 'december',
+      endMonth: 'february'
+    });
+
+    const spring = await Season.insert({
+      season: 'spring',
+      startMonth: 'march',
+      endMonth: 'may'
+    });
+
+    const summer = await Season.insert({
+      season: 'summer',
+      startMonth: 'june',
+      endMonth: 'august'
+    });
+
+    const fall = await Season.insert({
+      season: 'fall',
+      startMonth: 'september',
+      endMonth: 'november'
+    });
+
+    const res = await request(app)
+      .get('/api/v1/seasons');
+
+    expect(res.body).toEqual([winter, spring, summer, fall]);
+  });
 });
