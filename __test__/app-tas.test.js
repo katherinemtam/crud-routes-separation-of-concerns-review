@@ -57,6 +57,20 @@ describe('ta routes', () => {
       .get(`/api/v1/tas/${ta.id}`);
 
     expect(res.body).toEqual(ta);
+  });
 
+  test('update a ta via PUT', async () => {
+    const ta = await Ta.insert({
+      firstName:'dan',
+      lastName: 'bennington'
+    });
+
+    ta.lastName = 'bennington III';
+
+    const res = await request(app)
+      .put(`/api/v1/tas/${ta.id}`)
+      .send(ta);
+
+    expect(res.body).toEqual(ta);
   });
 });
