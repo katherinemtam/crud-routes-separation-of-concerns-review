@@ -72,4 +72,21 @@ describe('tea routes', () => {
 
     expect(res.body).toEqual([chai, sweet, monkey]);
   });
+
+  test('get a tea via GET', async () => {
+    const tea = await Tea.insert({
+      name: 'po cha',
+      type: 'black',
+      origin: 'tibet',
+      brewTempF: 195,
+      brewTimeMinutesMin: 3,
+      brewTimeMinutesMax: 4,
+      hasSugar: false
+    });
+
+    const res = await request(app)
+      .get(`/api/v1/teas/${tea.id}`);
+
+    expect(res.body).toEqual(tea); 
+  });
 });
