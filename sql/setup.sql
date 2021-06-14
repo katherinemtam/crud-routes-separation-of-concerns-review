@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS dogs, birds, tas, seasons ;
+DROP TABLE IF EXISTS dogs, birds, tas, seasons, teas ;
 
 CREATE TABLE dogs (
   id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -24,4 +24,15 @@ CREATE TABLE seasons (
   season TEXT NOT NULL,
   start_month TEXT NOT NULL,
   end_month TEXT NOT NULL
-)
+);
+
+CREATE TABLE teas (
+  id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  name TEXT NOT NULL,
+  type TEXT NOT NULL,
+  origin TEXT NOT NULL,
+  brew_temp_f INTEGER NOT NULL,
+  brew_time_minutes_min INTEGER NOT NULL,
+  brew_time_minutes_max INTEGER NOT NULL,
+  has_sugar BOOLEAN NOT NULL
+);
