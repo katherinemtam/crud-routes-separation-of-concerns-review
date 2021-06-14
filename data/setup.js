@@ -1,12 +1,9 @@
-const dotenv = require('dotenv');
-dotenv.config();
-const fs = require('fs').promises;
-// const path = require('path');
-
-module.exports = (pool) => {
+import { promises as fs } from 'fs';
+import path from 'path';
+export default (pool) => {
   return fs
     .readFile(
-      'C:/Users/Kat/alchemy/career-track/lab-04-review/sql/setup.sql',
+      './sql/setup.sql',
       {
         encoding: 'utf-8',
       }
