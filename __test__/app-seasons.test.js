@@ -88,4 +88,18 @@ describe('season routes', () => {
 
     expect(res.body).toEqual(season);
   });
+
+  test('delete a season via DELETE', async () => {
+    const season = await Season.insert({
+      season: 'monsoon',
+      startMonth: 'july',
+      endMonth: 'august'
+    });
+    
+    const res = await request(app)
+      .delete(`/api/v1/seasons/${season.id}`)
+      .send(season);
+
+    expect(res.body).toEqual(season);
+  });
 });
