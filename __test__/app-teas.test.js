@@ -109,4 +109,22 @@ describe('tea routes', () => {
 
     expect(res.body).toEqual(tea);
   });
+
+  test('delete a tea via DELETE', async () => {
+    const tea = await Tea.insert({
+      name: 'phoenix tea',
+      type: 'oolong',
+      origin: 'china',
+      brewTempF: 5,
+      brewTimeMinutesMin: 3,
+      brewTimeMinutesMax: 5,
+      hasSugar: false
+    });
+
+    const res = await request(app)
+      .delete(`/api/v1/teas/${tea.id}`)
+      .send(tea);
+
+    expect(res.body).toEqual(tea);
+  });
 });
