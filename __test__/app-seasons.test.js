@@ -72,4 +72,20 @@ describe('season routes', () => {
 
     expect(res.body).toEqual(season);
   });
+
+  test('update a season via PUT', async () => {
+    const season = await Season.insert({
+      season: 'fall',
+      startMonth: 'september',
+      endMonth: 'november'
+    });
+
+    season.season = 'autumn';
+
+    const res = await request(app)
+      .put(`/api/v1/seasons/${season.id}`)
+      .send(season);
+
+    expect(res.body).toEqual(season);
+  });
 });
