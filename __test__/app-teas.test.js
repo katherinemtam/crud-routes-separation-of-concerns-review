@@ -89,4 +89,24 @@ describe('tea routes', () => {
 
     expect(res.body).toEqual(tea); 
   });
+
+  test('update a tea via PUT', async () => {
+    const tea = await Tea.insert({
+      name: 'pu-erh',
+      type: 'puerh',
+      origin: 'china',
+      brewTempF: 190,
+      brewTimeMinutesMin: 3,
+      brewTimeMinutesMax: 5,
+      hasSugar: false
+    });
+    
+    tea.name = 'pu\'er';
+    
+    const res = await request(app)
+      .put(`/api/v1/teas/${tea.id}`)
+      .send(tea);
+
+    expect(res.body).toEqual(tea);
+  });
 });
