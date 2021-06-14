@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "cross-env node --experimental-vm-modules ./node_modules/jest/bin/jest.js --verbose --runInBand",
+    "test": "cross-env NODE_OPTIONS=--experimental-vm-modules npx jest --verbose --runInBand --testLocationInResults --setupFiles dotenv/config",
     "test:watch": "npm run test -- --watch",
     "start": "node server.js",
     "start:watch": "nodemon server.js"
