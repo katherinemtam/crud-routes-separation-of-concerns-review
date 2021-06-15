@@ -1,0 +1,38 @@
+DROP TABLE IF EXISTS dogs, birds, tas, seasons, teas ;
+
+CREATE TABLE dogs (
+  id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  name TEXT NOT NULL,
+  age INTEGER NOT NULL,
+  weight TEXT 
+);
+
+CREATE TABLE birds (
+  id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  type TEXT NOT NULL,
+  origin TEXT NOT NULL
+);
+
+CREATE TABLE tas (
+  id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  first_name TEXT NOT NULL,
+  last_name TEXT NOT NULL
+);
+
+CREATE TABLE seasons (
+  id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  season TEXT NOT NULL,
+  start_month TEXT NOT NULL,
+  end_month TEXT NOT NULL
+);
+
+CREATE TABLE teas (
+  id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  name TEXT NOT NULL,
+  type TEXT NOT NULL,
+  origin TEXT NOT NULL,
+  brew_temp_f INTEGER NOT NULL,
+  brew_time_minutes_min INTEGER NOT NULL,
+  brew_time_minutes_max INTEGER NOT NULL,
+  has_sugar BOOLEAN NOT NULL
+);
